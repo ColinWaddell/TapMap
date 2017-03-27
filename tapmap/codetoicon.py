@@ -1,4 +1,4 @@
-from weathercodes import *
+from .weathercodes import TEMPERATURES, WEATHER_ICON, WEATHER_CLOTHING
 
 def GetTemperatureStatus(temp_high):
     try:
