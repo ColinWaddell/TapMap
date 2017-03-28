@@ -4,6 +4,8 @@ from .locations import LOCATIONS
 import xml.etree.ElementTree as ET
 import svgwrite
 
+# The canvas we'll draw on and
+# the size of the icons.
 SCOTLAND_SVG = "tapmap/assets/map/scotland.svg"
 I_WIDTH  = 75
 I_HEIGHT = 75
@@ -75,4 +77,6 @@ def CreateWeatherMap(filename, locations=LOCATIONS):
     [dwg.add(o) for o in overlay]
     dwg.save()
 
+# On load of this module find the
+# size of the canvas for use later
 (C_WIDTH, C_HEIGHT) = _GetSVGSize(SCOTLAND_SVG)
