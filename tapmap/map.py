@@ -14,8 +14,8 @@ def _StringToInt(s):
 
 
 def _GetSVGSize(filename):
-    svg = ET.parse()
-    tree = svg.getroot(SCOTLAND_SVG)
+    svg = ET.parse(filename)
+    tree = svg.getroot()
     width = _StringToInt(tree.get("width"))
     height = _StringToInt(tree.get("height"))
     return (width, height)
@@ -43,7 +43,7 @@ def _BuildClothingIcons(locations):
     for location in locations:
         try:
             weather = GetWeatherData(location["name"])
-            clothing = GetClothingIcon(weather["code"], weather["temp_f"])
+            clothing = GetClothingIcon(weather["code"], weather["temp_c"])
             icon = svgwrite.image.Image(
                         "tapmap/assets/symbols/clothing/" + clothing + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
