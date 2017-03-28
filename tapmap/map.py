@@ -10,16 +10,12 @@ SCOTLAND_SVG = "tapmap/assets/map/scotland.svg"
 I_WIDTH  = 75
 I_HEIGHT = 75
 
-def _StringToInt(s):
-    x = [int(i) for i in s if i.isdigit()]
-    return int(''.join(map(str,x)))
-
-
 def _GetSVGSize(filename):
     svg = ET.parse(filename)
     tree = svg.getroot()
-    width = _StringToInt(tree.get("width"))
-    height = _StringToInt(tree.get("height"))
+    s2i = lambda s: int(''.join(map(str, [int(i) for i in s if i.isdigit()])))
+    width = s2i(tree.get("width"))
+    height = s2i(tree.get("height"))
     return (width, height)
 
 def _BuildWeatherIcons(locations):
