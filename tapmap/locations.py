@@ -1,5 +1,11 @@
 LOCATIONS = [
                 {
+                    "name": "Inverness",
+                    "x": 0.5483,
+                    "y": 0.5478
+                },
+
+                {
                     "name": "Glasgow",
                     "x": 0.5209,
                     "y": 0.7729
@@ -54,15 +60,9 @@ LOCATIONS = [
                 },
 
                 {
-                    "name": "Fort William",
+                    "name": "Fort+William",
                     "x": 0.4475,
                     "y": 0.6250
-                },
-
-                {
-                    "name": "Inverness",
-                    "x": 0.5483,
-                    "y": 0.5478
                 },
 
                 {
