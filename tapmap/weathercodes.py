@@ -1,7 +1,7 @@
 TEMPERATURES = [
   {"title":"colder", "lowerBound": -273.15},
   {"title":"cold",   "lowerBound":       3},
-  {"title":"fair",   "lowerBound":      10},
+  {"title":"fair",   "lowerBound":      11},
   {"title":"warm",   "lowerBound":      16}
 ]
 

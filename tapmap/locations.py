@@ -74,7 +74,7 @@ LOCATIONS = [
 
                 {
                     "name": "Shetland",
-                    "x": 0.96,
+                    "x": 0.948,
                     "y": 0.093
                 },
 
