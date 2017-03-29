@@ -1,5 +1,4 @@
-from tapmap.map import BuildClothingMap, BuildWeatherMap
-from tapmap.weatherdata import GetWeatherData
-from tapmap.locations import LOCATIONS
+from tapmap.map import CreateClothingMap, CreateWeatherMap
 
-BuildClothingMap("test.svg").save()
+CreateWeatherMap("taps_weather.svg")
+CreateClothingMap("taps_clothing.svg")
