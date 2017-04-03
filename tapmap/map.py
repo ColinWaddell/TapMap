@@ -29,12 +29,12 @@ def _BuildWeatherIcons(locations):
             icon = svgwrite.image.Image(
                         PATH + "/tapmap/assets/symbols/weather/" + forecast + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
-                        insert=((location["x"]*C_WIDTH)  - (I_WIDTH/2),
-                                (location["y"]*C_HEIGHT) - (I_HEIGHT/2))
+                        insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
+                                round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
                     )
             icons.append(icon)
-        except KeyError:
-            pass
+        except (KeyError, TypeError):
+            print("WEATHER: Error retrieving " + location["name"])
 
     return icons
 
@@ -48,12 +48,12 @@ def _BuildClothingIcons(locations):
             icon = svgwrite.image.Image(
                         PATH + "/tapmap/assets/symbols/clothing/" + clothing + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
-                        insert=((location["x"]*C_WIDTH) - (I_WIDTH/2),
-                                (location["y"]*C_HEIGHT) - (I_HEIGHT/2))
+                        insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
+                                round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
                     )
             icons.append(icon)
-        except KeyError:
-            pass
+        except (KeyError, TypeError):
+            print("CLOTHING: Error retrieving " + location["name"])
 
     return icons
 
@@ -74,6 +74,9 @@ def CreateClothingMap(filename, locations=LOCATIONS):
 
 
 def CreateWeatherMap(filename, locations=LOCATIONS):
+    if not locations:
+        return
+
     dwg = _CreateBaseMap(filename)
     overlay = _BuildWeatherIcons(locations)
     [dwg.add(o) for o in overlay]
