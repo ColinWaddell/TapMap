@@ -5,7 +5,6 @@ import xml.etree.ElementTree as ET
 import svgwrite
 import os
 
-
 # The canvas we'll draw on and
 # the size of the icons.
 PATH = os.getcwd()
@@ -39,6 +38,7 @@ def _BuildWeatherIcons(locations):
 
     return icons
 
+
 def _BuildClothingIcons(locations):
     icons = []
     for location in locations:
@@ -57,21 +57,24 @@ def _BuildClothingIcons(locations):
 
     return icons
 
-def CreateClothingMap(filename, locations=LOCATIONS):
+
+def _CreateBaseMap(filename):
     # Scotland
     dwg = svgwrite.Drawing(filename, size=(C_WIDTH, C_HEIGHT))
     scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     dwg.add(scotland)
+    return dwg
+
+
+def CreateClothingMap(filename, locations=LOCATIONS):
+    dwg = _CreateBaseMap(filename)
     overlay = _BuildClothingIcons(locations)
     [dwg.add(o) for o in overlay]
     dwg.save()
 
 
 def CreateWeatherMap(filename, locations=LOCATIONS):
-    # Scotland
-    dwg = svgwrite.Drawing(filename, size=(C_WIDTH, C_HEIGHT))
-    scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
-    dwg.add(scotland)
+    dwg = _CreateBaseMap(filename)
     overlay = _BuildWeatherIcons(locations)
     [dwg.add(o) for o in overlay]
     dwg.save()
