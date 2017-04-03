@@ -3,10 +3,13 @@ from .weatherdata import GetWeatherData
 from .locations import LOCATIONS
 import xml.etree.ElementTree as ET
 import svgwrite
+import os
+
 
 # The canvas we'll draw on and
 # the size of the icons.
-SCOTLAND_SVG = "tapmap/assets/map/scotland.svg"
+PATH = os.getcwd()
+SCOTLAND_SVG = PATH + "/tapmap/assets/map/scotland.svg"
 I_WIDTH  = 100
 I_HEIGHT = 100
 
@@ -25,7 +28,7 @@ def _BuildWeatherIcons(locations):
             weather = GetWeatherData(location["name"])
             forecast = GetWeatherIcon(weather["code"], weather["daytime"])
             icon = svgwrite.image.Image(
-                        "tapmap/assets/symbols/weather/" + forecast + ".svg",
+                        PATH + "/tapmap/assets/symbols/weather/" + forecast + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
                         insert=((location["x"]*C_WIDTH)  - (I_WIDTH/2),
                                 (location["y"]*C_HEIGHT) - (I_HEIGHT/2))
@@ -43,7 +46,7 @@ def _BuildClothingIcons(locations):
             weather = GetWeatherData(location["name"])
             clothing = GetClothingIcon(weather["code"], weather["temp_c"])
             icon = svgwrite.image.Image(
-                        "tapmap/assets/symbols/clothing/" + clothing + ".svg",
+                        PATH + "/tapmap/assets/symbols/clothing/" + clothing + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
                         insert=((location["x"]*C_WIDTH) - (I_WIDTH/2),
                                 (location["y"]*C_HEIGHT) - (I_HEIGHT/2))
@@ -57,7 +60,7 @@ def _BuildClothingIcons(locations):
 def CreateClothingMap(filename, locations=LOCATIONS):
     # Scotland
     dwg = svgwrite.Drawing(filename, size=(C_WIDTH, C_HEIGHT))
-    scotland = svgwrite.image.Image(SCOTLAND_SVG)
+    scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     dwg.add(scotland)
     overlay = _BuildClothingIcons(locations)
     [dwg.add(o) for o in overlay]
@@ -67,14 +70,11 @@ def CreateClothingMap(filename, locations=LOCATIONS):
 def CreateWeatherMap(filename, locations=LOCATIONS):
     # Scotland
     dwg = svgwrite.Drawing(filename, size=(C_WIDTH, C_HEIGHT))
-    scotland = svgwrite.image.Image(SCOTLAND_SVG)
+    scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     dwg.add(scotland)
     overlay = _BuildWeatherIcons(locations)
     [dwg.add(o) for o in overlay]
     dwg.save()
-
-    [dwg.add(o) for o in overlay]
-    return dwg
 
 # On load of this module find the
 # size of the canvas for use later
