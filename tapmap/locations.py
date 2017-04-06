@@ -68,7 +68,7 @@ LOCATIONS = [
 
                 {
                     "name": "Dunnet",
-                    "x": 0.65,
+                    "x": 0.62,
                     "y": 0.39
                 },
 
