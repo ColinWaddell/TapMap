@@ -105,7 +105,6 @@ def CreateWeatherMap(filename, locations=LOCATIONS):
     if not locations:
         return
 
-    print(locations)
     dwg = _CreateBaseMap(filename)
     overlay = _BuildWeatherIcons(locations)
     [dwg.add(o) for o in overlay]
