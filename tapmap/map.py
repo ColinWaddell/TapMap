@@ -2,6 +2,7 @@ from .codetoicon import GetClothingIcon, GetWeatherIcon
 from .weatherdata import GetWeatherData
 from .locations import LOCATIONS
 import xml.etree.ElementTree as ET
+from clint.textui import puts, indent, colored, progress
 import svgwrite
 import os
 
@@ -11,6 +12,10 @@ PATH = os.path.dirname(os.path.realpath(__file__))
 SCOTLAND_SVG = PATH + "/assets/map/scotland.svg"
 I_WIDTH  = 100
 I_HEIGHT = 100
+RETRIES  = 3
+
+def _longestName(locations):
+    return len(max([l["name"] for l in locations], key=len))
 
 def _GetSVGSize(filename):
     svg = ET.parse(filename)
@@ -22,38 +27,61 @@ def _GetSVGSize(filename):
 
 def _BuildWeatherIcons(locations):
     icons = []
-    for location in locations:
-        try:
-            weather = GetWeatherData(location["name"])
-            forecast = GetWeatherIcon(weather["code"], weather["daytime"])
-            icon = svgwrite.image.Image(
-                        PATH + "/assets/symbols/weather/" + forecast + ".svg",
-                        size=(I_WIDTH, I_HEIGHT),
-                        insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
-                                round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
-                    )
-            icons.append(icon)
-        except (KeyError, TypeError):
-            print("WEATHER: Error retrieving " + location["name"])
+    label_len = _longestName(locations)+1
+    print("Building Weather Icons:")
+    with progress.Bar(label=" "*label_len, expected_size=len(locations)) as bar:
+        for index, location in enumerate(locations):
+            retries = RETRIES
+            bar.show(index+1)
+            name = location["name"]
+            bar.label = name + " "*(label_len - len(name))
+            while retries:
+                try:
+                    weather = GetWeatherData(name)
+                    forecast = GetWeatherIcon(weather["code"], weather["daytime"])
+                    icon = svgwrite.image.Image(
+                                PATH + "/assets/symbols/weather/" + forecast + ".svg",
+                                size=(I_WIDTH, I_HEIGHT),
+                                insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
+                                        round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
+                            )
+                    icons.append(icon)
+                    break # No need to retry
+
+                except KeyError:
+                    print("WEATHER: Error retrieving " + name + ". Retries remaining: " + str(retries))
+                    retries = retries - 1
 
     return icons
 
 
+
 def _BuildClothingIcons(locations):
     icons = []
-    for location in locations:
-        try:
-            weather = GetWeatherData(location["name"])
-            clothing = GetClothingIcon(weather["code"], weather["temp_c"])
-            icon = svgwrite.image.Image(
-                        PATH + "/assets/symbols/clothing/" + clothing + ".svg",
-                        size=(I_WIDTH, I_HEIGHT),
-                        insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
-                                round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
-                    )
-            icons.append(icon)
-        except (KeyError, TypeError):
-            print("CLOTHING: Error retrieving " + location["name"])
+    label_len = _longestName(locations)+1
+    print("Building Clothing Icons:")
+    with progress.Bar(label=" "*label_len, expected_size=len(locations)) as bar:
+        for index, location in enumerate(locations):
+            retries = RETRIES
+            bar.show(index+1)
+            name = location["name"]
+            bar.label = name + " "*(label_len - len(name))
+            while retries:
+                try:
+                    weather = GetWeatherData(name)
+                    clothing = GetClothingIcon(weather["code"], weather["temp_c"])
+                    icon = svgwrite.image.Image(
+                                PATH + "/assets/symbols/clothing/" + clothing + ".svg",
+                                size=(I_WIDTH, I_HEIGHT),
+                                insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
+                                        round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
+                            )
+                    icons.append(icon)
+                    break # No need to retry
+
+                except KeyError:
+                    print("WEATHER: Error retrieving " + name + ". Retries remaining: " + str(retries))
+                    retries = retries - 1
 
     return icons
 
@@ -77,6 +105,7 @@ def CreateWeatherMap(filename, locations=LOCATIONS):
     if not locations:
         return
 
+    print(locations)
     dwg = _CreateBaseMap(filename)
     overlay = _BuildWeatherIcons(locations)
     [dwg.add(o) for o in overlay]

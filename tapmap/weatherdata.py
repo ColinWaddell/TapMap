@@ -8,7 +8,7 @@ def GetWeatherData(location):
         return None
 
     url = SITE_URL+'/?api&location=' + location
-    weather_json = None
+    weather_json = {}
 
     try:
         response = requests.get(url)
