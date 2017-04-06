@@ -7,8 +7,8 @@ import os
 
 # The canvas we'll draw on and
 # the size of the icons.
-PATH = os.getcwd()
-SCOTLAND_SVG = PATH + "/tapmap/assets/map/scotland.svg"
+PATH = os.path.dirname(os.path.realpath(__file__))
+SCOTLAND_SVG = PATH + "/assets/map/scotland.svg"
 I_WIDTH  = 100
 I_HEIGHT = 100
 
@@ -27,7 +27,7 @@ def _BuildWeatherIcons(locations):
             weather = GetWeatherData(location["name"])
             forecast = GetWeatherIcon(weather["code"], weather["daytime"])
             icon = svgwrite.image.Image(
-                        PATH + "/tapmap/assets/symbols/weather/" + forecast + ".svg",
+                        PATH + "/assets/symbols/weather/" + forecast + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
                         insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
                                 round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
@@ -46,7 +46,7 @@ def _BuildClothingIcons(locations):
             weather = GetWeatherData(location["name"])
             clothing = GetClothingIcon(weather["code"], weather["temp_c"])
             icon = svgwrite.image.Image(
-                        PATH + "/tapmap/assets/symbols/clothing/" + clothing + ".svg",
+                        PATH + "/assets/symbols/clothing/" + clothing + ".svg",
                         size=(I_WIDTH, I_HEIGHT),
                         insert=(round((location["x"]*C_WIDTH) - (I_WIDTH/2)),
                                 round((location["y"]*C_HEIGHT) - (I_HEIGHT/2)))
