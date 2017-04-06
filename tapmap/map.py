@@ -4,6 +4,7 @@ from .locations import LOCATIONS
 import xml.etree.ElementTree as ET
 from clint.textui import puts, indent, colored, progress
 import svgwrite
+import datetime
 import os
 
 # The canvas we'll draw on and
@@ -90,7 +91,11 @@ def _CreateBaseMap(filename):
     # Scotland
     dwg = svgwrite.Drawing(filename, size=(C_WIDTH, C_HEIGHT))
     scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
+    # Build time
+    dt = datetime.datetime.now().strftime("%d/%m/%y %I:%M %p")
+    message = svgwrite.text.Text(dt, insert=(10, C_HEIGHT-10), style="font-size:40px; font-family: Arial")
     dwg.add(scotland)
+    dwg.add(message)
     return dwg
 
 
