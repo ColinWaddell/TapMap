@@ -11,8 +11,8 @@ import os
 # the size of the icons.
 PATH = os.path.dirname(os.path.realpath(__file__))
 SCOTLAND_SVG = PATH + "/assets/map/scotland.svg"
-I_WIDTH  = 100
-I_HEIGHT = 100
+I_WIDTH  = 50
+I_HEIGHT = 50
 RETRIES  = 3
 
 def _longestName(locations):

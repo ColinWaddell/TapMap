@@ -1,4 +1,3 @@
-from .locations import LOCATIONS
 import requests
 
 SITE_URL = 'http://taps-aff.co.uk'
