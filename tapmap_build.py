@@ -1,5 +1,5 @@
 from tapmap.map import CreateClothingMap, CreateWeatherMap
-import cairosvg
+from subprocess import call
 import sys
 
 try:
@@ -8,8 +8,8 @@ try:
 except IndexError:
     OUTDIR = "./"
 
-CreateClothingMap(OUTDIR+"taps_clothing.svg")
-cairosvg.svg2png(url=OUTDIR+"taps_clothing.svg", write_to=OUTDIR+"taps_clothing.png")
+CreateClothingMap("/srv/www/taps-aff.co.uk/tapmap/taps_clothing.svg")
+call(["convert", "-depth", "4", "/srv/www/taps-aff.co.uk/tapmap/taps_clothing.svg", OUTDIR+"taps_clothing.png"])
 
-CreateWeatherMap(OUTDIR+"taps_weather.svg")
-cairosvg.svg2png(url=OUTDIR+"taps_weather.svg", write_to=OUTDIR+"taps_weather.png")
+CreateWeatherMap("/srv/www/taps-aff.co.uk/tapmap/taps_weather.svg")
+call(["convert", "-depth", "4", "/srv/www/taps-aff.co.uk/tapmap/taps_weather.svg", OUTDIR+"taps_weather.png"])
