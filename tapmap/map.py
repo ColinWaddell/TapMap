@@ -92,7 +92,7 @@ def _CreateBaseMap(filename):
     dwg = svgwrite.Drawing(filename, size=(C_WIDTH, C_HEIGHT))
     scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     # Build time
-    dt = datetime.datetime.now().strftime("%d/%m/%y %I:%M %p")
+    dt = datetime.datetime.now().strftime("%d/%m/%y %I:%M %p").lstrip("0").replace(" 0", " ")
     message = svgwrite.text.Text(dt, insert=(10, C_HEIGHT-10), style="font-size:20px; color: #ccc; font-family: Arial")
     dwg.add(scotland)
     dwg.add(message)
