@@ -81,7 +81,7 @@ def _BuildClothingIcons(locations):
                     break # No need to retry
 
                 except KeyError:
-                    print("WEATHER: Error retrieving " + name + ". Retries remaining: " + str(retries))
+                    print("CLOTHING: Error retrieving " + name + ". Retries remaining: " + str(retries))
                     retries = retries - 1
 
     return icons
@@ -93,7 +93,7 @@ def _CreateBaseMap(filename):
     scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     # Build time
     dt = datetime.datetime.now().strftime("%d/%m/%y %I:%M %p")
-    message = svgwrite.text.Text(dt, insert=(10, C_HEIGHT-10), style="font-size:40px; font-family: Arial")
+    message = svgwrite.text.Text(dt, insert=(10, C_HEIGHT-10), style="font-size:20px; color: #ccc; font-family: Arial")
     dwg.add(scotland)
     dwg.add(message)
     return dwg
