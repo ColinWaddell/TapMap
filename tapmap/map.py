@@ -11,8 +11,8 @@ import os
 # the size of the icons.
 PATH = os.path.dirname(os.path.realpath(__file__))
 SCOTLAND_SVG = PATH + "/assets/map/scotland.svg"
-I_WIDTH  = 50
-I_HEIGHT = 50
+I_WIDTH  = 100
+I_HEIGHT = 100
 RETRIES  = 3
 
 def _longestName(locations):
@@ -93,7 +93,7 @@ def _CreateBaseMap(filename):
     scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     # Build time
     dt = datetime.datetime.now().strftime("%d/%m/%y %I:%M %p").lstrip("0").replace(" 0", " ")
-    message = svgwrite.text.Text(dt, insert=(5, C_HEIGHT-5), style="font-size:10px; color: #ccc; font-family: Arial")
+    message = svgwrite.text.Text(dt, insert=(10, C_HEIGHT-10), style="font-size:20px; color: #ccc; font-family: Arial")
     dwg.add(scotland)
     dwg.add(message)
     return dwg
