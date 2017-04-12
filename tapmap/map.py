@@ -49,7 +49,7 @@ def _BuildWeatherIcons(locations):
                     icons.append(icon)
                     break # No need to retry
 
-                except KeyError:
+                except KeyError, ValueError:
                     print("WEATHER: Error retrieving " + name + ". Retries remaining: " + str(retries))
                     retries = retries - 1
 
