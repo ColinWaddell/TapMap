@@ -26,23 +26,23 @@ WEATHER_CLOTHING = [
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 17 - hail
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 18 - sleet
   {"colder":"jacket", "cold":"jacket", "fair":"tshirt", "warm":"tshirt"}, # 19 - dust
-  {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 20 - foggy
-  {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 21 - haze
-  {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 22 - smoky
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 20 - foggy
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 21 - haze
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 22 - smoky
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"tshirt"}, # 23 - blustery
   {"colder":"jacket", "cold":"jacket", "fair":"hoddie", "warm":"tshirt"}, # 24 - windy
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"hoodie"}, # 25 - cold
   {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 26 - cloudy
-  {"colder":"hoodie", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 27 - mostly cloudy (night)
-  {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 28 - mostly cloudy (day)
-  {"colder":"hoodie", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 29 - partly cloudy (night)
-  {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 30 - partly cloudy (day)
-  {"colder":"hoodie", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 31 - clear (night)
-  {"colder":"tshirt", "cold":"tshirt", "fair":"tshirt", "warm":"tshirt"}, # 32 - sunny
-  {"colder":"tshirt", "cold":"tshirt", "fair":"tshirt", "warm":"tshirt"}, # 33 - fair (night)
-  {"colder":"tshirt", "cold":"tshirt", "fair":"tshirt", "warm":"tshirt"}, # 34 - fair (day)
+  {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 27 - mostly cloudy (night)
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 28 - mostly cloudy (day)
+  {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 29 - partly cloudy (night)
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 30 - partly cloudy (day)
+  {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 31 - clear (night)
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 32 - sunny
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 33 - fair (night)
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 34 - fair (day)
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 35 - mixed rain and hail
-  {"colder":"tshirt", "cold":"tshirt", "fair":"hoodie", "warm":"tshirt"}, # 36 - hot
+  {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 36 - hot
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"tshirt"}, # 37 - isolated thunderstorms
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"tshirt"}, # 38 - scattered thunderstorms
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"tshirt"}, # 39 - scattered showers
@@ -50,7 +50,7 @@ WEATHER_CLOTHING = [
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 41 - heavy snow
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 42 - scattered snow showers
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 43 - heavy snow
-  {"colder":"hoodie", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 44 - partly cloudy
+  {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 44 - partly cloudy
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"tshirt"}, # 45 - thundershowers
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"hoodie"}, # 46 - snow showers
   {"colder":"jacket", "cold":"jacket", "fair":"jacket", "warm":"tshirt"}  # 47 - isolated thundershowers
@@ -106,4 +106,3 @@ WEATHER_ICON = [
   {"day": "rain_snow",        "night": "rain_snow"},        # 46 - snow showers
   {"day": "rain_lightning",   "night": "rain_lightning"}    # 47 - isolated thundershowers
 ]
-
