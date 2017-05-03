@@ -1,6 +1,6 @@
 TEMPERATURES = [
   {"title":"colder", "lowerBound": -273.15},
-  {"title":"cold",   "lowerBound":       3},
+  {"title":"cold",   "lowerBound":       5},
   {"title":"fair",   "lowerBound":      11},
   {"title":"warm",   "lowerBound":      16}
 ]
@@ -32,7 +32,7 @@ WEATHER_CLOTHING = [
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"tshirt"}, # 23 - blustery
   {"colder":"jacket", "cold":"jacket", "fair":"hoddie", "warm":"tshirt"}, # 24 - windy
   {"colder":"jacket", "cold":"jacket", "fair":"hoodie", "warm":"hoodie"}, # 25 - cold
-  {"colder":"hoodie", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 26 - cloudy
+  {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 26 - cloudy
   {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 27 - mostly cloudy (night)
   {"colder":"jacket", "cold":"hoodie", "fair":"tshirt", "warm":"tshirt"}, # 28 - mostly cloudy (day)
   {"colder":"jacket", "cold":"hoodie", "fair":"hoodie", "warm":"tshirt"}, # 29 - partly cloudy (night)

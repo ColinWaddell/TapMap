@@ -49,7 +49,7 @@ def _BuildWeatherIcons(locations):
                     icons.append(icon)
                     break # No need to retry
 
-                except KeyError, ValueError:
+                except (KeyError, ValueError):
                     print("WEATHER: Error retrieving " + name + ". Retries remaining: " + str(retries))
                     retries = retries - 1
 
@@ -70,7 +70,11 @@ def _BuildClothingIcons(locations):
             while retries:
                 try:
                     weather = GetWeatherData(name)
-                    clothing = GetClothingIcon(weather["code"], weather["temp_c"])
+                    if (weather["taps"]=="aff"):
+                        clothing="tapsaff"
+                    else:
+                        clothing = GetClothingIcon(weather["code"], weather["temp_c"])
+
                     icon = svgwrite.image.Image(
                                 PATH + "/assets/symbols/clothing/" + clothing + ".svg",
                                 size=(I_WIDTH, I_HEIGHT),
@@ -80,7 +84,7 @@ def _BuildClothingIcons(locations):
                     icons.append(icon)
                     break # No need to retry
 
-                except KeyError:
+                except (KeyError, ValueError):
                     print("CLOTHING: Error retrieving " + name + ". Retries remaining: " + str(retries))
                     retries = retries - 1
 
@@ -93,6 +97,7 @@ def _CreateBaseMap(filename):
     scotland = svgwrite.image.Image(SCOTLAND_SVG, size=(C_WIDTH, C_HEIGHT), insert=(0, 0))
     # Build time
     dt = datetime.datetime.now().strftime("%d/%m/%y %I:%M %p").lstrip("0").replace(" 0", " ")
+    print(dt)
     message = svgwrite.text.Text(dt, insert=(10, C_HEIGHT-10), style="font-size:20px; color: #ccc; font-family: Arial")
     dwg.add(scotland)
     dwg.add(message)
