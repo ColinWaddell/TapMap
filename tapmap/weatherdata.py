@@ -1,12 +1,12 @@
 import requests
 
-SITE_URL = 'http://taps-aff.co.uk'
+API_URL = 'http://django.taps-aff.co.uk/api'
 
 def GetWeatherData(location):
     if not location:
         return None
 
-    url = SITE_URL+'/?api&location=' + location
+    url = '%s/%s' % (API_URL, location)
     weather_json = {}
 
     try:

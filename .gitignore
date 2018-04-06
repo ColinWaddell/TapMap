@@ -4,3 +4,5 @@ __pycache__
 taps_*.svg
 *.png
 *.pyc
+env/
+.vscode/
